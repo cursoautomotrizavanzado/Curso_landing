@@ -182,6 +182,52 @@ details p{padding:0 22px 20px;color:var(--mut);font-size:.94rem}
 .podnum div span{font-size:.8rem;color:#9aa4b2;letter-spacing:.04em}
 @media(max-width:640px){.podlist ul{columns:1}}
 
+
+/* BOTONES */
+.btnrow{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.btnrow .btn{background:#f0b429;color:#12171f}
+.btnrow .btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #4a5666}
+.cta .btnrow .btn.ghost{box-shadow:inset 0 0 0 2px rgba(255,255,255,.7)}
+.btn:hover{opacity:.9}
+.btnhint{align-self:center;font-size:.88rem;color:#9aa4b2}
+
+/* MUESTRA GRATIS */
+.free{background:#0f2a19;color:#eaf3ec;border-bottom:6px solid var(--grn)}
+.free h2{color:#fff}
+.free .eyebrow{color:#8fe0a8}
+.freegrid{display:grid;grid-template-columns:1.25fr 1fr;gap:38px;align-items:center;margin-top:30px}
+.free p{color:#bcd6c4;font-size:1.02rem}
+.free ul{list-style:none;margin:20px 0 0;font-size:.95rem}
+.free li{padding:9px 0;border-bottom:1px solid #1d4229;color:#d5e7da}
+.free li b{font-family:"Helvetica Neue",Arial,sans-serif;color:#8fe0a8;font-size:.76rem;
+  letter-spacing:.1em;display:inline-block;min-width:96px}
+.freecard{background:#12341f;border:1px solid #1d4229;border-left:5px solid #f0b429;padding:30px;text-align:center}
+.freecard .zero{font-family:"Helvetica Neue",Arial,sans-serif;font-size:4.4rem;font-weight:800;
+  color:#f0b429;line-height:.9}
+.freecard .lbl{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.72rem;letter-spacing:.2em;
+  text-transform:uppercase;color:#8fe0a8;margin:8px 0 18px}
+.freecard .btn{background:#f0b429;color:#12171f;display:block}
+.freecard small{display:block;margin-top:14px;color:#8ba795;font-size:.8rem}
+@media(max-width:800px){.freegrid{grid-template-columns:1fr}}
+
+/* KIT / BONOS */
+.kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:8px}
+.kit article{background:#fff;border:1px solid var(--line);border-top:4px solid var(--acc);padding:22px}
+.kit .num{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--acc);font-weight:700}
+.kit h3{font-size:1.05rem;margin:8px 0 8px}
+.kit p{font-size:.9rem;color:var(--mut)}
+.kit .tagbono{display:inline-block;background:#f0b429;color:#12171f;font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:.6rem;font-weight:800;letter-spacing:.16em;padding:3px 8px;margin-bottom:10px}
+
+/* PAGOS */
+.pay{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:6px}
+.pay article{background:#fff;border:1px solid var(--line);padding:22px;border-left:4px solid var(--blu)}
+.pay h3{font-size:1.02rem;color:var(--blu);margin-bottom:6px}
+.pay p{font-size:.9rem;color:var(--mut)}
+.paynote{margin-top:26px;background:#f2f0ec;border-left:4px solid var(--acc);padding:18px 22px;
+  font-size:.94rem;color:var(--mut)}
+
 /* CTA */
 .cta{background:var(--acc);color:#fff;padding:56px 0;border:none;text-align:center}
 .cta h2{color:#fff}
@@ -206,19 +252,50 @@ footer{padding:34px 0;font-size:.84rem;color:var(--mut);text-align:center}
     <h1>Deja de cambiar piezas.<br><em>Empieza a diagnosticar.</em></h1>
     <p class="sub">Curso Master de Sensores y Actuadores Automotrices: 16 módulos que enseñan
       el método con el que un multímetro, un osciloscopio de dos canales y una pinza
-      amperimétrica resuelven lo que un escáner de gama alta no puede.<br><strong style="color:#f0b429">Incluye 16 podcasts de bono y un banco interactivo de 1 196 preguntas con explicación razonada.</strong></p>
+      amperimétrica resuelven lo que un escáner de gama alta no puede.<br><strong style="color:#f0b429">Bonos incluidos: 16 podcasts, banco interactivo de 1 196 preguntas, Manual del Instructor, Manual Rápido de Bolsillo y la Calculadora de Taller con su manual de uso.</strong></p>
+    <div class="btnrow">
+      <a class="btn" href="https://wa.me/584243029659?text=Hola%2C%20quiero%20el%20M%C3%B3dulo%200%20GRATIS%20de%20muestra%20del%20Curso%20Master%20de%20Sensores%20y%20Actuadores%20Automotrices." target="_blank">EMPIEZA CON EL MÓDULO 0 GRATIS</a>
+      <span class="btnhint">Sin pagar nada. Te llega por WhatsApp.</span>
+    </div>
     <div class="stats">
       <div class="stat"><b>16</b><span>MÓDULOS</span></div>
       <div class="stat"><b>679</b><span>PÁGINAS</span></div>
       <div class="stat"><b>148</b><span>OSCILOGRAMAS Y DIAGRAMAS</span></div>
-      <div class="stat"><b>100+</b><span>COMPONENTES ANALIZADOS</span></div>
-      <div class="stat"><b>70</b><span>HORAS DE FORMACIÓN</span></div>
+      <div class="stat"><b>+100</b><span>COMPONENTES ANALIZADOS</span></div>
+      <div class="stat"><b>+70</b><span>HORAS DE FORMACIÓN</span></div>
       <div class="stat"><b>16</b><span>PODCASTS DE BONO</span></div>
       <div class="stat"><b>1196</b><span>PREGUNTAS INTERACTIVAS</span></div>
-      <div class="stat"><b>1196</b><span>PREGUNTAS INTERACTIVAS</span></div>
+      <div class="stat"><b>51</b><span>CÁLCULOS EN LA CALCULADORA</span></div>
     </div>
   </div>
 </header>
+
+<section class="free">
+  <div class="wrap">
+    <div class="eyebrow">Pruébalo antes de pagar</div>
+    <h2>¡Módulo cero gratis de muestra!</h2>
+    <div class="freegrid">
+      <div>
+        <p>El Módulo 0 es la base eléctrica sobre la que se apoyan los quince módulos restantes.
+          Se entrega completo, sin recortes y sin compromiso: léelo, aplícalo en el taller esta
+          semana y decide después.</p>
+        <ul>
+          <li><b>Incluye</b> Ley de Ohm aplicada al vehículo y cálculo de resistencia parásita</li>
+          <li><b>Incluye</b> Caída de voltaje: por qué el límite se escala con la corriente</li>
+          <li><b>Incluye</b> VREF, SIG RTN y tierras: las tres fallas que imitan un sensor dañado</li>
+          <li><b>Incluye</b> Osciloscopio, pinza amperimétrica y lectura de PWM</li>
+          <li><b>Incluye</b> Sus cuestionarios de autoevaluación con respuesta razonada</li>
+        </ul>
+      </div>
+      <div class="freecard">
+        <div class="zero">0</div>
+        <div class="lbl">Módulo de muestra · Gratis</div>
+        <a class="btn" href="https://wa.me/584243029659?text=Hola%2C%20quiero%20el%20M%C3%B3dulo%200%20GRATIS%20de%20muestra%20del%20Curso%20Master%20de%20Sensores%20y%20Actuadores%20Automotrices." target="_blank">SOLICITAR MUESTRA GRATIS</a>
+        <small>Te llega por WhatsApp. El mensaje ya va escrito: solo pulsa enviar.</small>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
@@ -348,7 +425,7 @@ temperatura ambiente — <span class="r">el problema es el cableado, no el senso
         <p>Deja de reemplazar por descarte. Cada módulo entrega procedimientos ejecutables
           con el instrumental que ya tienes.</p></div>
       <div><b>Instructor y escuela técnica</b>
-        <p>Programa completo de 70 horas con guía del instructor, respuestas razonadas,
+        <p>Programa completo de más de 70 horas con Manual del Instructor, respuestas razonadas,
           equipamiento mínimo y ocho prácticas obligatorias.</p></div>
       <div><b>Dueño de taller</b>
         <p>Reduce las garantías por diagnóstico equivocado y justifica ante el cliente
@@ -360,17 +437,20 @@ temperatura ambiente — <span class="r">el problema es el cableado, no el senso
 <section>
   <div class="wrap">
     <div class="eyebrow">Qué incluye</div>
-    <h2>Material completo</h2>
+    <h2>Material completo: más de 70 horas de formación</h2>
+    <p class="lede">Dieciséis módulos, 679 páginas, 148 oscilogramas y diagramas y más de cien componentes analizados uno por uno.</p>
     <table>
       <tr><th>Componente</th><th>Formato</th><th>Detalle</th></tr>
-      <tr><td><strong>16 módulos del curso</strong></td><td>PDF + Markdown</td><td>649 páginas, 148 figuras originales</td></tr>
-      <tr><td><strong>Guía del Instructor</strong></td><td>PDF + Markdown</td><td>60 respuestas razonadas con cálculo y criterio de calificación</td></tr>
+      <tr><td><strong>16 módulos del curso</strong></td><td>PDF + Markdown</td><td>679 páginas, 148 oscilogramas y diagramas, más de 100 componentes analizados</td></tr>
+      <tr><td><strong>Manual del Instructor</strong></td><td>PDF + Markdown</td><td>60 respuestas razonadas con cálculo, criterio de calificación y prácticas de aula</td></tr>
       <tr><td>Hojas de referencia rápida</td><td>Incluidas por módulo</td><td>Fórmulas, límites y valores en una página</td></tr>
       <tr><td>Cuestionarios de autoevaluación</td><td>Por componente</td><td>3 preguntas de diagnóstico real por cada componente</td></tr>
       <tr><td>Examen final</td><td>10 bloques temáticos</td><td>60 preguntas con cálculo, no de memoria</td></tr>
       <tr><td>Casos de estudio</td><td>En el Módulo 15</td><td>10 casos con datos, cálculo y verificación</td></tr>
       <tr><td><strong>Banco de preguntas interactivo</strong></td><td>Aplicación HTML</td><td>1 196 preguntas con explicación razonada y filtro por tema</td></tr>
-      <tr><td><strong>BONO · 16 podcasts</strong></td><td>MP3 descargable</td><td>Uno por módulo, más de 15 minutos cada uno · +4 h de audio</td></tr>
+      <tr><td><strong>BONO · 16 podcasts</strong></td><td>M4A descargable</td><td>Uno por módulo, más de 15 minutos cada uno · +4 h de audio · MP3 a petición</td></tr>
+      <tr><td><strong>BONO · Manual Rápido de Bolsillo</strong></td><td>PDF para imprimir</td><td>Todos los valores del curso en 13 páginas, para llevar al taller</td></tr>
+      <tr><td><strong>BONO · Calculadora de Taller</strong></td><td>Aplicación HTML + manual PDF</td><td>51 cálculos del curso ya programados, con manual de uso ilustrado</td></tr>
       <tr><td>Archivos fuente editables</td><td>Markdown</td><td>Para adaptar el contenido a tu programa</td></tr>
     </table>
   </div>
@@ -380,10 +460,25 @@ temperatura ambiente — <span class="r">el problema es el cableado, no el senso
   <div class="wrap">
     <div class="eyebrow">Preguntas frecuentes</div>
     <h2>Antes de decidir</h2>
+    <details><summary>¿Puedo ver el curso antes de comprarlo?</summary>
+      <p>Sí. El <strong>Módulo 0 completo se entrega gratis</strong> como muestra: fundamentos
+        eléctricos, caída de voltaje, VREF y tierras, osciloscopio y pinza, con sus cuestionarios.
+        Pídelo por WhatsApp y lo recibes sin compromiso. Es el mismo archivo que reciben los
+        alumnos, sin recortes ni marcas de agua.</p></details>
+    <details><summary>¿Cómo puedo pagar?</summary>
+      <p>Cuatro formas: <strong>pago móvil a tasa Binance</strong> (en bolívares),
+        <strong>Zinli</strong>, <strong>Binance</strong> (USDT) y <strong>PayPal</strong> para
+        pagos internacionales. Confirmado el pago recibes el enlace de descarga con los 16
+        módulos y los cinco bonos.</p></details>
+    <details><summary>¿Qué es la Calculadora de Taller?</summary>
+      <p>Un bono: un solo archivo HTML con los 51 cálculos del curso ya programados —caída de
+        voltaje, frecuencia de CKP, NTC, presión, rizado, consumo parásito y el resto—. Escribes
+        lo que mediste y devuelve el resultado con el rango del curso al lado. Se abre en el
+        móvil, funciona sin conexión y viene con un manual de uso ilustrado en PDF.</p></details>
     <details><summary>¿Necesito un osciloscopio caro?</summary>
       <p>No. El curso está diseñado alrededor de un osciloscopio de dos canales con al menos
         200 kS/s, que hoy es equipamiento accesible. Las especificaciones mínimas de cada
-        instrumento están detalladas en la Guía del Instructor, con la justificación técnica
+        instrumento están detalladas en el Manual del Instructor, con la justificación técnica
         de por qué se necesita cada característica.</p></details>
     <details><summary>¿Sirve para vehículos híbridos y eléctricos?</summary>
       <p>El curso cubre el sistema de gestión de motores de combustión, incluidos los
@@ -409,6 +504,11 @@ temperatura ambiente — <span class="r">el problema es el cableado, no el senso
         a internet. Eliges módulo y tema, respondes, y cada respuesta muestra el razonamiento completo
         más la referencia al parágrafo del curso. Al terminar obtienes un resumen con los temas que
         conviene repasar. Sirve tanto para autoestudio como para evaluar alumnos en un aula.</p></details>
+    <details><summary>¿En qué formato vienen los podcasts?</summary>
+      <p>En <strong>M4A</strong>, el formato de audio estándar hoy: se reproduce sin instalar nada
+        en iPhone, Android, Windows, Mac y en cualquier reproductor con Bluetooth o CarPlay.
+        Si tu radio del coche es de las que solo leen MP3 desde un USB, escríbeme y te envío
+        la misma serie convertida a MP3, sin costo.</p></details>
     <details><summary>¿Los podcasts repiten el contenido de los módulos?</summary>
       <p>No son los módulos leídos en voz alta. Cada episodio recorre el <em>razonamiento</em>
         de un módulo —por qué una medición engaña, qué separa dos causas parecidas— y cierra
@@ -473,6 +573,54 @@ temperatura ambiente — <span class="r">el problema es el cableado, no el senso
   </div>
 </section>
 
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Bonos incluidos · Sin costo adicional</div>
+    <h2>Cinco herramientas que acompañan al curso</h2>
+    <p class="lede">El curso enseña el método. Estos cinco bonos existen para que el método
+      sobreviva al cierre del PDF: para repasarlo, practicarlo, enseñarlo y aplicarlo con las
+      manos sucias.</p>
+    <div class="kit">
+      <article>
+        <span class="tagbono">BONO 1</span>
+        <div class="num">Audio · M4A</div>
+        <h3>16 podcasts</h3>
+        <p>Uno por módulo, más de 15 minutos cada uno. El repaso que sí se hace: en el coche,
+          en el almuerzo, camino al taller.</p>
+      </article>
+      <article>
+        <span class="tagbono">BONO 2</span>
+        <div class="num">Aplicación HTML</div>
+        <h3>Banco interactivo de 1 196 preguntas</h3>
+        <p>112 temas, cada respuesta con el cálculo explicado y la referencia al parágrafo
+          exacto del curso.</p>
+      </article>
+      <article>
+        <span class="tagbono">BONO 3</span>
+        <div class="num">PDF + Markdown</div>
+        <h3>Manual del Instructor</h3>
+        <p>Respuestas razonadas, criterios de calificación, equipamiento mínimo y ocho
+          prácticas de aula listas para dictar.</p>
+      </article>
+      <article>
+        <span class="tagbono">BONO 4</span>
+        <div class="num">PDF para imprimir</div>
+        <h3>Manual Rápido de Bolsillo</h3>
+        <p>Todos los valores del curso en un solo documento: fórmulas, límites de caída,
+          valores en ralentí, pruebas maestras y códigos por sistema.</p>
+      </article>
+      <article>
+        <span class="tagbono">BONO 5</span>
+        <div class="num">Aplicación HTML + manual PDF</div>
+        <h3>Calculadora de Taller + manual de uso</h3>
+        <p>Los 51 cálculos del curso ya programados: escribe lo que mediste y lee el
+          resultado, con el rango del curso al lado. Funciona sin conexión.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="bonus">
   <div class="wrap">
     <div class="bonustag">BONO INCLUIDO · SIN COSTO ADICIONAL</div>
@@ -528,7 +676,40 @@ temperatura ambiente — <span class="r">el problema es el cableado, no el senso
       <div><b>16</b><span>EPISODIOS</span></div>
       <div><b>+15 min</b><span>CADA UNO</span></div>
       <div><b>+4 h</b><span>DE AUDIO</span></div>
-      <div><b>MP3</b><span>DESCARGA SIN CONEXIÓN</span></div>
+      <div><b>M4A</b><span>DESCARGA SIN CONEXIÓN</span></div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Formas de pago</div>
+    <h2>Paga como te resulte más cómodo</h2>
+    <p class="lede">Cuatro métodos disponibles, dentro y fuera de Venezuela. Escribe por WhatsApp,
+      elige el que prefieras y recibes los datos y el material el mismo día.</p>
+    <div class="pay">
+      <article>
+        <h3>Pago móvil a tasa Binance</h3>
+        <p>En bolívares, con la tasa Binance del día. El método más rápido si estás en Venezuela.</p>
+      </article>
+      <article>
+        <h3>Zinli</h3>
+        <p>Transferencia en dólares desde la app, sin comisiones para ti.</p>
+      </article>
+      <article>
+        <h3>Binance</h3>
+        <p>USDT u otra cripto directamente a la billetera. Confirmación en minutos.</p>
+      </article>
+      <article>
+        <h3>PayPal</h3>
+        <p>Para pagos internacionales desde cualquier país.</p>
+      </article>
+    </div>
+    <div class="paynote">
+      <strong>Entrega inmediata.</strong> Confirmado el pago, recibes el enlace de descarga con
+      los 16 módulos y los cinco bonos. Actualizaciones futuras incluidas, sin pago adicional.
+      <br><a href="https://wa.me/584243029659?text=Hola%2C%20quiero%20comprar%20el%20curso.%20%C2%BFMe%20indicas%20los%20m%C3%A9todos%20de%20pago%20disponibles%3F" target="_blank" style="color:#c1272d;font-weight:700">Consultar datos de pago por WhatsApp →</a>
     </div>
   </div>
 </section>
@@ -538,15 +719,22 @@ temperatura ambiente — <span class="r">el problema es el cableado, no el senso
     <h2>El método, en una línea</h2>
     <p>Verifique la energía. Capture la señal. Mida la corriente. Confirme la respuesta
       física. Y solo entonces, decida.</p>
-    <a class="btn" href="https://wa.me/584243029659?text=Hola%20estoy%20interesad%40%20en%20el%20curso." target="_blank">SOLICITAR EL CURSO COMPLETO</a>
-    <p class="note">16 módulos · Guía del Instructor · <strong>1 196 preguntas interactivas</strong> · <strong>16 podcasts</strong> · Archivos editables · Actualizaciones incluidas</p>
+    <div class="btnrow" style="justify-content:center">
+      <a class="btn" href="https://wa.me/584243029659?text=Hola%2C%20estoy%20interesad%40%20en%20el%20Curso%20Master%20completo%20%2816%20m%C3%B3dulos%20%2B%20bonos%29." target="_blank">SOLICITAR EL CURSO COMPLETO</a>
+      <a class="btn ghost" href="https://wa.me/584243029659?text=Hola%2C%20quiero%20el%20M%C3%B3dulo%200%20GRATIS%20de%20muestra%20del%20Curso%20Master%20de%20Sensores%20y%20Actuadores%20Automotrices." target="_blank">PROBAR EL MÓDULO 0 GRATIS</a>
+    </div>
+    <p class="note">16 módulos · 679 páginas · +70 horas · <strong>Manual del Instructor</strong> ·
+      <strong>1 196 preguntas interactivas</strong> · <strong>16 podcasts</strong> ·
+      <strong>Manual Rápido de Bolsillo</strong> · <strong>Calculadora + manual</strong> ·
+      Archivos editables · Actualizaciones incluidas</p>
+    <p class="note">Pago móvil a tasa Binance · Zinli · Binance · PayPal</p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     Curso Master de Sensores y Actuadores Automotrices · Diagnóstico Electrónico Avanzado<br>
-    Módulos 0 a 15 · Guía del Instructor
+    Módulos 0 a 15 · Manual del Instructor · Manual Rápido de Bolsillo · Calculadora de Taller<br>Pago móvil a tasa Binance · Zinli · Binance · PayPal
   </div>
 </footer>
 
