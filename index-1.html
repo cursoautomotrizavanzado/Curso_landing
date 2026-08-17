@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso Master de Sensores y Actuadores Automotrices</title>
+<style>
+:root{
+  --ink:#0d1117; --paper:#fbfaf8; --acc:#c1272d; --blu:#1b5fa8;
+  --grn:#1e7d34; --mut:#5c6470; --line:#e2ded8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:"Georgia","Times New Roman",serif;
+  background:var(--paper); color:var(--ink); line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3,.ui{font-family:"Helvetica Neue",Arial,sans-serif}
+
+/* HERO */
+header{
+  background:var(--ink); color:#fff; padding:72px 0 64px;
+  border-bottom:6px solid var(--acc);
+}
+.kicker{
+  font-family:"Helvetica Neue",Arial,sans-serif; font-size:.72rem;
+  letter-spacing:.22em; text-transform:uppercase; color:#8fb4e0; margin-bottom:20px;
+}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+h1 em{color:#f0b429;font-style:normal}
+.sub{font-size:1.18rem;color:#c9cfd8;margin-top:22px;max-width:46em}
+.stats{display:flex;flex-wrap:wrap;gap:36px;margin-top:40px;padding-top:32px;border-top:1px solid #2a323d}
+.stat b{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:2rem;font-weight:800;color:#f0b429;line-height:1}
+.stat span{font-size:.82rem;color:#9aa4b2;letter-spacing:.04em}
+
+/* SECTIONS */
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+h2{font-size:1.9rem;font-weight:800;letter-spacing:-.01em;margin-bottom:10px}
+.lede{color:var(--mut);font-size:1.05rem;max-width:52em;margin-bottom:36px}
+.eyebrow{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.7rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--acc);font-weight:700;margin-bottom:12px}
+
+/* PROBLEM */
+.prob{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0;border:1px solid var(--line)}
+.prob div{padding:26px;border-right:1px solid var(--line);background:#fff}
+.prob div:last-child{border-right:none}
+.prob b{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.95rem;margin-bottom:8px;color:var(--acc)}
+.prob p{font-size:.94rem;color:var(--mut)}
+
+/* MODULES */
+.mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.mod{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blu);padding:18px 20px}
+.mod .n{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.7rem;letter-spacing:.14em;
+  color:var(--blu);font-weight:700}
+.mod h3{font-size:1.02rem;margin:6px 0 6px;font-weight:700}
+.mod p{font-size:.87rem;color:var(--mut);line-height:1.5}
+.mod.hl{border-left-color:var(--acc)}
+.mod.hl .n{color:var(--acc)}
+
+/* DIFFERENTIATORS */
+.diff{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+.diff article{background:#fff;border:1px solid var(--line);padding:26px}
+.diff h3{font-size:1.1rem;margin-bottom:10px;color:var(--blu)}
+.diff p{font-size:.94rem;color:var(--mut)}
+.diff code{font-family:"SF Mono",Consolas,monospace;font-size:.85rem;background:#f2f0ec;
+  padding:2px 6px;border-radius:3px;color:var(--ink)}
+
+/* SAMPLE */
+.sample{background:var(--ink);color:#e8eaed;padding:30px;font-family:"SF Mono",Consolas,monospace;
+  font-size:.82rem;line-height:1.75;overflow-x:auto;border-left:4px solid #f0b429}
+.sample .c{color:#8fb4e0}
+.sample .y{color:#f0b429}
+.sample .r{color:#f08a86}
+
+/* AUDIENCE */
+.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.aud div{border-top:3px solid var(--grn);padding-top:16px}
+.aud b{font-family:"Helvetica Neue",Arial,sans-serif;display:block;margin-bottom:6px;font-size:.98rem}
+.aud p{font-size:.9rem;color:var(--mut)}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;background:#fff;font-size:.94rem}
+th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{background:#f2f0ec;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.78rem;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+td strong{color:var(--acc)}
+
+/* FAQ */
+details{background:#fff;border:1px solid var(--line);margin-bottom:10px}
+summary{padding:18px 22px;cursor:pointer;font-family:"Helvetica Neue",Arial,sans-serif;
+  font-weight:600;font-size:.98rem;list-style:none;position:relative}
+summary::after{content:"+";position:absolute;right:22px;color:var(--acc);font-size:1.3rem;line-height:1}
+details[open] summary::after{content:"−"}
+details p{padding:0 22px 20px;color:var(--mut);font-size:.94rem}
+
+/* BANCO DE PREGUNTAS */
+.bank{background:#eef2f7;border-bottom:6px solid var(--blu)}
+.bank .eyebrow{color:var(--blu)}
+.bankgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:38px;align-items:start;margin-top:32px}
+.bankfeat{display:flex;flex-direction:column;gap:16px}
+.bankfeat article{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blu);padding:18px 20px}
+.bankfeat h3{font-size:1rem;margin-bottom:6px;color:var(--blu)}
+.bankfeat p{font-size:.9rem;color:var(--mut)}
+.mock{background:#fff;border:1px solid var(--rule,#c3cddb);box-shadow:0 2px 14px rgba(22,32,46,.09)}
+.mockbar{background:#101922;color:#9fd6c4;font-family:"SF Mono",Consolas,monospace;
+  font-size:.68rem;letter-spacing:.06em;padding:9px 14px;border-bottom:2px solid #c96a00}
+.mockbody{padding:18px}
+.mocktag{display:inline-block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.6rem;
+  letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--blu);
+  border:1px solid var(--blu);padding:2px 7px;margin-bottom:10px}
+.mockq{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.9rem;font-weight:600;
+  line-height:1.45;margin-bottom:13px}
+.mockopt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);
+  padding:8px 11px;margin-bottom:7px;font-size:.82rem;line-height:1.4}
+.mockopt b{flex:0 0 auto;width:19px;height:19px;display:grid;place-items:center;border:1.5px solid #5c6470;
+  font-family:"SF Mono",Consolas,monospace;font-size:.66rem;color:#5c6470}
+.mockopt.ok{border-color:#12703a;background:#e6f4eb}
+.mockopt.ok b{border-color:#12703a;background:#12703a;color:#fff}
+.mockexp{border-left:3px solid #c96a00;background:#fdf6ec;padding:10px 13px;font-size:.79rem;
+  line-height:1.5;margin-top:11px}
+.mockexp strong{color:#12703a}
+.banknum{display:flex;flex-wrap:wrap;gap:30px;margin-top:30px;padding-top:26px;border-top:1px solid #c3cddb}
+.banknum div b{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1.85rem;
+  font-weight:800;color:var(--blu);line-height:1}
+.banknum div span{font-size:.78rem;color:var(--mut);letter-spacing:.04em}
+@media(max-width:760px){.bankgrid{grid-template-columns:1fr}}
+
+/* BANCO DE PREGUNTAS */
+.bank{background:#eef2f6;border-bottom:6px solid var(--blu)}
+.bank .eyebrow{color:var(--blu)}
+.bankgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:38px;align-items:start;margin-top:30px}
+.bankdemo{background:#16202e;padding:0;border:1px solid #0d1520}
+.bankbar{background:#101922;color:#9fd6c4;padding:11px 16px;
+  font-family:"SF Mono",Consolas,monospace;font-size:.72rem;letter-spacing:.06em;
+  border-bottom:2px solid #c96a00}
+.bankbar span{color:#5f7d74}
+.bankq{background:#fff;padding:22px}
+.bankq .tag{display:inline-block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.6rem;
+  letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--blu);
+  border:1px solid var(--blu);padding:3px 8px;margin-bottom:12px}
+.bankq h4{font-size:.98rem;font-weight:700;line-height:1.45;margin-bottom:14px;font-family:inherit}
+.bankopt{display:flex;gap:11px;align-items:flex-start;border:1px solid #c3cddb;
+  padding:10px 13px;margin-bottom:7px;font-size:.88rem;line-height:1.4}
+.bankopt i{flex:0 0 auto;width:21px;height:21px;display:grid;place-items:center;font-style:normal;
+  border:1.5px solid #4a5a70;font-family:"SF Mono",Consolas,monospace;font-size:.7rem;
+  font-weight:700;color:#4a5a70}
+.bankopt.ok{border-color:#12703a;background:#e6f4eb}
+.bankopt.ok i{border-color:#12703a;background:#12703a;color:#fff}
+.bankexp{margin-top:14px;border-left:4px solid #c96a00;background:#fdf6ec;padding:12px 15px;
+  font-size:.85rem;line-height:1.55}
+.bankexp b{color:#12703a;display:block;margin-bottom:4px}
+.bankfeat li{list-style:none;padding:13px 0;border-bottom:1px solid #c3cddb;font-size:.94rem}
+.bankfeat li b{font-family:"Helvetica Neue",Arial,sans-serif;display:block;font-size:.95rem;margin-bottom:3px}
+.bankfeat li span{color:var(--mut);font-size:.88rem}
+.banknum{display:flex;flex-wrap:wrap;gap:34px;margin-top:26px;padding-top:24px;border-top:2px solid #c3cddb}
+.banknum div b{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1.8rem;
+  font-weight:800;color:var(--blu);line-height:1}
+.banknum div span{font-size:.78rem;color:var(--mut);letter-spacing:.04em}
+@media(max-width:800px){.bankgrid{grid-template-columns:1fr}}
+
+/* BONO PODCAST */
+.bonus{background:#12171f;color:#e8eaed;border-bottom:6px solid #f0b429}
+.bonus h2{color:#fff}
+.bonus .lede{color:#9aa4b2}
+.bonus .eyebrow{color:#f0b429}
+.bonustag{display:inline-block;background:#f0b429;color:#12171f;
+  font-family:"Helvetica Neue",Arial,sans-serif;font-size:.68rem;font-weight:800;
+  letter-spacing:.18em;padding:6px 14px;margin-bottom:16px}
+.podgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:34px}
+.podgrid article{background:#1b222d;border:1px solid #2a323d;padding:24px;border-left:4px solid #f0b429}
+.podgrid h3{font-size:1.05rem;color:#f0b429;margin-bottom:9px}
+.podgrid p{font-size:.92rem;color:#b6bec9}
+.podlist{margin-top:34px;background:#1b222d;border:1px solid #2a323d;padding:26px 30px}
+.podlist ul{list-style:none;columns:2;column-gap:44px;font-size:.9rem}
+.podlist li{padding:7px 0;border-bottom:1px solid #262e3a;break-inside:avoid;color:#c9cfd8}
+.podlist li b{color:#f0b429;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.76rem;
+  letter-spacing:.08em;display:inline-block;min-width:52px}
+.podnum{display:flex;flex-wrap:wrap;gap:38px;margin-top:32px;padding-top:28px;border-top:1px solid #2a323d}
+.podnum div b{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1.9rem;
+  font-weight:800;color:#f0b429;line-height:1}
+.podnum div span{font-size:.8rem;color:#9aa4b2;letter-spacing:.04em}
+@media(max-width:640px){.podlist ul{columns:1}}
+
+
+/* BOTONES */
+.btnrow{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.btnrow .btn{background:#f0b429;color:#12171f}
+.btnrow .btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #4a5666}
+.cta .btnrow .btn.ghost{box-shadow:inset 0 0 0 2px rgba(255,255,255,.7)}
+.btn:hover{opacity:.9}
+.btnhint{align-self:center;font-size:.88rem;color:#9aa4b2}
+
+/* MUESTRA GRATIS */
+.free{background:#0f2a19;color:#eaf3ec;border-bottom:6px solid var(--grn)}
+.free h2{color:#fff}
+.free .eyebrow{color:#8fe0a8}
+.freegrid{display:grid;grid-template-columns:1.25fr 1fr;gap:38px;align-items:center;margin-top:30px}
+.free p{color:#bcd6c4;font-size:1.02rem}
+.free ul{list-style:none;margin:20px 0 0;font-size:.95rem}
+.free li{padding:9px 0;border-bottom:1px solid #1d4229;color:#d5e7da}
+.free li b{font-family:"Helvetica Neue",Arial,sans-serif;color:#8fe0a8;font-size:.76rem;
+  letter-spacing:.1em;display:inline-block;min-width:96px}
+.freecard{background:#12341f;border:1px solid #1d4229;border-left:5px solid #f0b429;padding:30px;text-align:center}
+.freecard .zero{font-family:"Helvetica Neue",Arial,sans-serif;font-size:4.4rem;font-weight:800;
+  color:#f0b429;line-height:.9}
+.freecard .lbl{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.72rem;letter-spacing:.2em;
+  text-transform:uppercase;color:#8fe0a8;margin:8px 0 18px}
+.freecard .btn{background:#f0b429;color:#12171f;display:block}
+.freecard small{display:block;margin-top:14px;color:#8ba795;font-size:.8rem}
+@media(max-width:800px){.freegrid{grid-template-columns:1fr}}
+
+/* KIT / BONOS */
+.kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:8px}
+.kit article{background:#fff;border:1px solid var(--line);border-top:4px solid var(--acc);padding:22px}
+.kit .num{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--acc);font-weight:700}
+.kit h3{font-size:1.05rem;margin:8px 0 8px}
+.kit p{font-size:.9rem;color:var(--mut)}
+.kit .tagbono{display:inline-block;background:#f0b429;color:#12171f;font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:.6rem;font-weight:800;letter-spacing:.16em;padding:3px 8px;margin-bottom:10px}
+
+/* PAGOS */
+/* PRECIO / INVERSIÓN */
+.price{background:#12171f;color:#e8eaed;border-bottom:6px solid var(--acc)}
+.price h2{color:#fff}
+.price .eyebrow{color:#f0b429}
+.price .lede{color:#9aa4b2}
+.pricegrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:36px;align-items:start;margin-top:34px}
+@media(max-width:820px){.pricegrid{grid-template-columns:1fr}}
+.pricecard{background:#1b222d;border:1px solid #2a323d;border-top:5px solid #f0b429;padding:30px 28px}
+.pricetag{font-family:"Helvetica Neue",Arial,sans-serif;font-size:3.6rem;font-weight:800;
+  color:#f0b429;line-height:1;letter-spacing:-.03em}
+.pricetag sup{font-size:1.4rem;font-weight:700;vertical-align:super;margin-right:3px}
+.priceonce{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:#9aa4b2;margin-top:14px;font-weight:700}
+.priceinc{list-style:none;margin-top:22px;padding-top:20px;border-top:1px solid #2a323d}
+.priceinc li{font-size:.88rem;color:#c9cfd8;padding:6px 0;padding-left:20px;position:relative}
+.priceinc li::before{content:"—";position:absolute;left:0;color:#f0b429}
+.pricecard .btn{background:#f0b429;color:#12171f;display:block;text-align:center;margin-top:24px;
+  padding:15px 20px;font-size:.84rem}
+.roi h3{font-family:"Helvetica Neue",Arial,sans-serif;font-size:1.3rem;color:#fff;
+  line-height:1.3;margin-bottom:18px}
+.roi > p{font-size:.98rem;color:#b6bec9;line-height:1.65;margin-bottom:16px}
+.roi > p strong{color:#fff}
+.roilist{margin-top:24px;border-top:1px solid #2a323d}
+.roilist div{display:flex;gap:16px;align-items:baseline;padding:13px 0;border-bottom:1px solid #2a323d}
+.roilist b{flex:0 0 96px;font-family:"SF Mono",Consolas,monospace;font-size:.9rem;color:#f08a86;
+  text-align:right;letter-spacing:-.01em}
+.roilist span{font-size:.9rem;color:#c9cfd8;line-height:1.5}
+.roikicker{margin-top:26px;background:#1b222d;border-left:4px solid #f0b429;padding:18px 22px;
+  font-size:1rem;line-height:1.6;color:#e8eaed}
+.roikicker strong{color:#f0b429}
+
+.pay{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:6px}.pay article{background:#fff;border:1px solid var(--line);padding:22px;border-left:4px solid var(--blu)}
+.pay h3{font-size:1.02rem;color:var(--blu);margin-bottom:6px}
+.pay p{font-size:.9rem;color:var(--mut)}
+.paynote{margin-top:26px;background:#f2f0ec;border-left:4px solid var(--acc);padding:18px 22px;
+  font-size:.94rem;color:var(--mut)}
+
+/* CTA */
+.cta{background:var(--acc);color:#fff;padding:56px 0;border:none;text-align:center}
+.cta h2{color:#fff}
+.cta p{color:#ffd9d7;max-width:40em;margin:0 auto 30px}
+.btn{display:inline-block;background:#fff;color:var(--acc);padding:15px 40px;
+  font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:1rem;
+  text-decoration:none;letter-spacing:.02em}
+.note{margin-top:22px;font-size:.85rem;color:#ffbdb9}
+
+footer{padding:34px 0;font-size:.84rem;color:var(--mut);text-align:center}
+@media(max-width:640px){
+  .prob div{border-right:none;border-bottom:1px solid var(--line)}
+  header{padding:52px 0 44px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Formación técnica profesional · Diagnóstico automotriz</div>
+    <h1>Deja de cambiar piezas.<br><em>Empieza a diagnosticar.</em></h1>
+    <p class="sub">Curso Master de Sensores y Actuadores Automotrices: 16 módulos que enseñan
+      el método con el que un multímetro, un osciloscopio de dos canales y una pinza
+      amperimétrica resuelven lo que un escáner de gama alta no puede.<br><strong style="color:#f0b429">Bonos incluidos: 16 podcasts, banco interactivo de 1 196 preguntas, Manual del Instructor, Manual Rápido de Bolsillo y la Calculadora de Taller con su manual de uso.</strong></p>
+    <div class="btnrow">
+      <a class="btn" href="https://wa.me/584243029659?text=Hola%2C%20quiero%20el%20M%C3%B3dulo%200%20GRATIS%20de%20muestra%20del%20Curso%20Master%20de%20Sensores%20y%20Actuadores%20Automotrices." target="_blank">EMPIEZA CON EL MÓDULO 0 GRATIS</a>
+      <span class="btnhint">Sin pagar nada. Te llega por WhatsApp.</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>16</b><span>MÓDULOS</span></div>
+      <div class="stat"><b>679</b><span>PÁGINAS</span></div>
+      <div class="stat"><b>148</b><span>OSCILOGRAMAS Y DIAGRAMAS</span></div>
+      <div class="stat"><b>+100</b><span>COMPONENTES ANALIZADOS</span></div>
+      <div class="stat"><b>+70</b><span>HORAS DE FORMACIÓN</span></div>
+      <div class="stat"><b>16</b><span>PODCASTS DE BONO</span></div>
+      <div class="stat"><b>1196</b><span>PREGUNTAS INTERACTIVAS</span></div>
+      <div class="stat"><b>51</b><span>CÁLCULOS EN LA CALCULADORA</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="free">
+  <div class="wrap">
+    <div class="eyebrow">Pruébalo antes de pagar</div>
+    <h2>¡Módulo cero gratis de muestra!</h2>
+    <div class="freegrid">
+      <div>
+        <p>El Módulo 0 es la base eléctrica sobre la que se apoyan los quince módulos restantes.
+          Se entrega completo, sin recortes y sin compromiso: léelo, aplícalo en el taller esta
+          semana y decide después.</p>
+        <ul>
+          <li><b>Incluye</b> Ley de Ohm aplicada al vehículo y cálculo de resistencia parásita</li>
+          <li><b>Incluye</b> Caída de voltaje: por qué el límite se escala con la corriente</li>
+          <li><b>Incluye</b> VREF, SIG RTN y tierras: las tres fallas que imitan un sensor dañado</li>
+          <li><b>Incluye</b> Osciloscopio, pinza amperimétrica y lectura de PWM</li>
+          <li><b>Incluye</b> Sus cuestionarios de autoevaluación con respuesta razonada</li>
+        </ul>
+      </div>
+      <div class="freecard">
+        <div class="zero">0</div>
+        <div class="lbl">Módulo de muestra · Gratis</div>
+        <a class="btn" href="https://wa.me/584243029659?text=Hola%2C%20quiero%20el%20M%C3%B3dulo%200%20GRATIS%20de%20muestra%20del%20Curso%20Master%20de%20Sensores%20y%20Actuadores%20Automotrices." target="_blank">SOLICITAR MUESTRA GRATIS</a>
+        <small>Te llega por WhatsApp. El mensaje ya va escrito: solo pulsa enviar.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">El problema real del taller</div>
+    <h2>El código no acusa al componente que nombra</h2>
+    <p class="lede">Todo técnico ha vivido esto: el escáner marca un código, se cambia la pieza
+      que el código menciona, y el vehículo regresa a la semana con el mismo síntoma.</p>
+    <div class="prob">
+      <div><b>P0016</b><p>No acusa al sensor CMP. En menos del 10 % de los casos el sensor es la causa.</p></div>
+      <div><b>P0171</b><p>No acusa al MAF. Puede ser una masa corroída que reduce su corriente un 30 %.</p></div>
+      <div><b>P0087</b><p>No acusa a la bomba. Suele ser el retorno excesivo de un solo inyector.</p></div>
+      <div><b>P0420</b><p>No acusa al catalizador. Frecuentemente es una fuga de escape de 3 mm.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Qué hace distinto a este curso</div>
+    <h2>No es un catálogo de valores. Es un método.</h2>
+    <p class="lede">Cada uno de los más de cien componentes se analiza con la misma estructura
+      obligatoria de 15 puntos, y todos se apoyan en la misma física eléctrica.</p>
+    <div class="diff">
+      <article>
+        <h3>Cada dato viene con su cálculo</h3>
+        <p>No se dice "la corriente debe ser 1 A". Se enseña a calcularla:
+          <code>I = 14.0 / 14.5 = 0.97 A</code>, y a deducir de una lectura de 0.71 A que
+          hay <strong>5.2 Ω de resistencia parásita</strong> y un 46 % de pérdida de fuerza
+          de apertura.</p>
+      </article>
+      <article>
+        <h3>Los límites no son universales</h3>
+        <p>0.20 V de caída es excelente en un circuito de arranque, aceptable en un inyector
+          y equivale a <strong>125 bar de error</strong> en un sensor de riel common rail.
+          El curso enseña a escalar el límite según la corriente y el rango.</p>
+      </article>
+      <article>
+        <h3>La corriente prueba lo que el voltaje no</h3>
+        <p>Un inyector con el pin pegado, un solenoide VVT con el filtro obstruido y un
+          actuador VGT trabado por carbón dan oscilogramas de voltaje <em>impecables</em>.
+          Solo la rampa de corriente revela si el actuador se movió.</p>
+      </article>
+      <article>
+        <h3>Diez casos resueltos con números</h3>
+        <p>No son anécdotas. Cada caso incluye los datos recogidos, el cálculo que llevó al
+          hallazgo, la reparación y las mediciones de verificación posteriores.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Muestra de contenido</div>
+    <h2>Así se ve una respuesta del curso</h2>
+    <p class="lede">Extracto del Módulo 3 — Sensores de Temperatura, §3.1, punto 9.</p>
+<div class="sample">
+<span class="c">CÁLCULO 3 — POR QUÉ EL ERROR CRECE CON LA TEMPERATURA</span>
+
+Temp. real   R_NTC     +50 Ω parásitos   Error resultante
+  20 °C     3 520 Ω        +1.4 %          <span class="c">≈ 0.3 °C  (despreciable)</span>
+  50 °C       973 Ω        +5.1 %          ≈ 1.2 °C
+  80 °C       332 Ω       +15.1 %          ≈ 4 °C
+ 100 °C       177 Ω       <span class="y">+28.2 %</span>          <span class="r">≈ 8 °C</span>
+
+<span class="y">HALLAZGO DIAGNÓSTICO CLAVE:</span>
+Un circuito con resistencia parásita <span class="y">lee bien en frío y mal en caliente</span>.
+
+Si un vehículo arranca bien en frío pero tiene mezcla rica y consumo alto
+en caliente, y el sensor "mide bien" con el óhmetro en el banco a
+temperatura ambiente — <span class="r">el problema es el cableado, no el sensor.</span>
+</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Contenido completo</div>
+    <h2>Dieciséis módulos, del multímetro al bus CAN</h2>
+    <p class="lede">Cada componente se desarrolla con 15 puntos obligatorios: valores en
+      ralentí y a 2000 RPM, rango normal, síntomas, reparaciones, diagnóstico paso a paso,
+      resistencias, alimentaciones y tierras, Ley de Ohm aplicada, nomenclatura de cableado,
+      simbología, oscilogramas, PWM, análisis de corriente y autoevaluación.</p>
+    <div class="mods">
+      <div class="mod hl"><div class="n">MÓDULO 0</div><h3>Fundamentos eléctricos</h3>
+        <p>Ley de Ohm aplicada, caída de voltaje, VREF y tierras, osciloscopio, pinza y PWM.</p></div>
+      <div class="mod"><div class="n">MÓDULO 1</div><h3>Sincronismo CKP / CMP</h3>
+        <p>VR, Hall y MRE. Ruedas reluctoras y análisis dinámico de 720°.</p></div>
+      <div class="mod"><div class="n">MÓDULO 2</div><h3>Sensores de carga</h3>
+        <p>MAP, BARO, MAF, TPS, APP y las tres arquitecturas de doble pista.</p></div>
+      <div class="mod"><div class="n">MÓDULO 3</div><h3>Temperatura NTC / PTC</h3>
+        <p>Tabla maestra completa y diagnóstico del sensor sesgado.</p></div>
+      <div class="mod"><div class="n">MÓDULO 4</div><h3>Oxígeno y mezcla</h3>
+        <p>Circonio, titanio, banda ancha, NOx y cálculo real de fuel trims.</p></div>
+      <div class="mod"><div class="n">MÓDULO 5</div><h3>Detonación</h3>
+        <p>Ventana angular, retardo de chispa y análisis FFT.</p></div>
+      <div class="mod"><div class="n">MÓDULO 6</div><h3>Sensores de presión</h3>
+        <p>Riel de baja y alta, aceite, EVAP, EGR, DPF, A/C y turbo.</p></div>
+      <div class="mod"><div class="n">MÓDULO 7</div><h3>Velocidad y posición</h3>
+        <p>VSS, ABS pasivo y activo, VVT, ángulo de dirección y nivel.</p></div>
+      <div class="mod hl"><div class="n">MÓDULO 8</div><h3>Inyección de combustible</h3>
+        <p>Saturado, Peak &amp; Hold, GDI, common rail, piezo y codificación IMA/IQA.</p></div>
+      <div class="mod"><div class="n">MÓDULO 9</div><h3>Sistema de encendido</h3>
+        <p>COP con IGBT, IGT/IGF, primario, secundario y rampa de dwell.</p></div>
+      <div class="mod"><div class="n">MÓDULO 10</div><h3>Control de aire y par</h3>
+        <p>IAC de pasos, IAC rotativo, cuerpo electrónico y admisión variable.</p></div>
+      <div class="mod"><div class="n">MÓDULO 11</div><h3>Emisiones y control térmico</h3>
+        <p>EVAP, EGR, OCV, aire secundario, AdBlue y bujías incandescentes.</p></div>
+      <div class="mod"><div class="n">MÓDULO 12</div><h3>Alimentación y refrigeración</h3>
+        <p>Bomba, electroventiladores, relés y actuador VGT/VNT.</p></div>
+      <div class="mod"><div class="n">MÓDULO 13</div><h3>Carga y arranque</h3>
+        <p>Alternador RVC y LIN, rizado, compresión relativa y consumo parásito.</p></div>
+      <div class="mod"><div class="n">MÓDULO 14</div><h3>Sensores digitales y redes</h3>
+        <p>SENT, PSI5, CAN y LIN aplicados al diagnóstico.</p></div>
+      <div class="mod hl"><div class="n">MÓDULO 15</div><h3>Metodología y casos</h3>
+        <p>Árbol universal, 10 casos resueltos, tabla maestra y examen de 60 preguntas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Para quién es</div>
+    <h2>Tres perfiles, tres usos</h2>
+    <div class="aud">
+      <div><b>Técnico de taller</b>
+        <p>Deja de reemplazar por descarte. Cada módulo entrega procedimientos ejecutables
+          con el instrumental que ya tienes.</p></div>
+      <div><b>Instructor y escuela técnica</b>
+        <p>Programa completo de más de 70 horas con Manual del Instructor, respuestas razonadas,
+          equipamiento mínimo y ocho prácticas obligatorias.</p></div>
+      <div><b>Dueño de taller</b>
+        <p>Reduce las garantías por diagnóstico equivocado y justifica ante el cliente
+          cada reparación con un número medido.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Qué incluye</div>
+    <h2>Material completo: más de 70 horas de formación</h2>
+    <p class="lede">Dieciséis módulos, 679 páginas, 148 oscilogramas y diagramas y más de cien componentes analizados uno por uno.</p>
+    <table>
+      <tr><th>Componente</th><th>Formato</th><th>Detalle</th></tr>
+      <tr><td><strong>16 módulos del curso</strong></td><td>PDF + Markdown</td><td>679 páginas, 148 oscilogramas y diagramas, más de 100 componentes analizados</td></tr>
+      <tr><td><strong>Manual del Instructor</strong></td><td>PDF + Markdown</td><td>60 respuestas razonadas con cálculo, criterio de calificación y prácticas de aula</td></tr>
+      <tr><td>Hojas de referencia rápida</td><td>Incluidas por módulo</td><td>Fórmulas, límites y valores en una página</td></tr>
+      <tr><td>Cuestionarios de autoevaluación</td><td>Por componente</td><td>3 preguntas de diagnóstico real por cada componente</td></tr>
+      <tr><td>Examen final</td><td>10 bloques temáticos</td><td>60 preguntas con cálculo, no de memoria</td></tr>
+      <tr><td>Casos de estudio</td><td>En el Módulo 15</td><td>10 casos con datos, cálculo y verificación</td></tr>
+      <tr><td><strong>Banco de preguntas interactivo</strong></td><td>Aplicación HTML</td><td>1 196 preguntas con explicación razonada y filtro por tema</td></tr>
+      <tr><td><strong>BONO · 16 podcasts</strong></td><td>M4A descargable</td><td>Uno por módulo, más de 15 minutos cada uno · +4 h de audio · MP3 a petición</td></tr>
+      <tr><td><strong>BONO · Manual Rápido de Bolsillo</strong></td><td>PDF para imprimir</td><td>Todos los valores del curso en 13 páginas, para llevar al taller</td></tr>
+      <tr><td><strong>BONO · Calculadora de Taller</strong></td><td>Aplicación HTML + manual PDF</td><td>51 cálculos del curso ya programados, con manual de uso ilustrado</td></tr>
+      <tr><td>Archivos fuente editables</td><td>Markdown</td><td>Para adaptar el contenido a tu programa</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Preguntas frecuentes</div>
+    <h2>Antes de decidir</h2>
+    <details><summary>¿Puedo ver el curso antes de comprarlo?</summary>
+      <p>Sí. El <strong>Módulo 0 completo se entrega gratis</strong> como muestra: fundamentos
+        eléctricos, caída de voltaje, VREF y tierras, osciloscopio y pinza, con sus cuestionarios.
+        Pídelo por WhatsApp y lo recibes sin compromiso. Es el mismo archivo que reciben los
+        alumnos, sin recortes ni marcas de agua.</p></details>
+    <details><summary>¿Cómo puedo pagar?</summary>
+      <p>Cuatro formas: <strong>pago móvil a tasa Binance</strong> (en bolívares),
+        <strong>Zinli</strong>, <strong>Binance</strong> (USDT) y <strong>PayPal</strong> para
+        pagos internacionales. Confirmado el pago recibes el enlace de descarga con los 16
+        módulos y los cinco bonos.</p></details>
+    <details><summary>¿Qué es la Calculadora de Taller?</summary>
+      <p>Un bono: un solo archivo HTML con los 51 cálculos del curso ya programados —caída de
+        voltaje, frecuencia de CKP, NTC, presión, rizado, consumo parásito y el resto—. Escribes
+        lo que mediste y devuelve el resultado con el rango del curso al lado. Se abre en el
+        móvil, funciona sin conexión y viene con un manual de uso ilustrado en PDF.</p></details>
+    <details><summary>¿Necesito un osciloscopio caro?</summary>
+      <p>No. El curso está diseñado alrededor de un osciloscopio de dos canales con al menos
+        200 kS/s, que hoy es equipamiento accesible. Las especificaciones mínimas de cada
+        instrumento están detalladas en el Manual del Instructor, con la justificación técnica
+        de por qué se necesita cada característica.</p></details>
+    <details><summary>¿Sirve para vehículos híbridos y eléctricos?</summary>
+      <p>El curso cubre el sistema de gestión de motores de combustión, incluidos los
+        componentes que también existen en híbridos (sensores, actuadores, redes CAN y LIN).
+        No cubre alta tensión ni tracción eléctrica: son una especialidad distinta con
+        requisitos de seguridad propios.</p></details>
+    <details><summary>¿Es específico de alguna marca?</summary>
+      <p>No. El método es universal y las tablas incluyen nomenclatura de cableado de GM,
+        Ford, Chrysler, Toyota, Honda, Nissan, VAG y Bosch, además de los convenios
+        americano (SAE), europeo (DIN) y japonés. Cada tabla advierte explícitamente que el
+        diagrama del VIN específico es la única fuente definitiva.</p></details>
+    <details><summary>¿Los valores están actualizados?</summary>
+      <p>El curso cubre desde tecnologías de los años 90 hasta lo actual: GDI, common rail
+        de 2 500 bar, inyectores piezoeléctricos, sensores SENT y PSI5, alternadores
+        controlados por LIN y ventiladores brushless. Se enseña tanto lo que llega al taller
+        hoy como lo que llegará mañana.</p></details>
+    <details><summary>¿Puedo adaptarlo a mi programa de formación?</summary>
+      <p>Sí. Se entregan los archivos fuente en Markdown, editables con cualquier procesador
+        de texto, además de los PDF listos para imprimir. Puedes reordenar módulos, añadir
+        casos propios o cambiar la marca del material.</p></details>
+    <details><summary>¿Cómo se usa el banco de preguntas?</summary>
+      <p>Es un único archivo HTML: se abre con cualquier navegador, sin instalar nada y sin conexión
+        a internet. Eliges módulo y tema, respondes, y cada respuesta muestra el razonamiento completo
+        más la referencia al parágrafo del curso. Al terminar obtienes un resumen con los temas que
+        conviene repasar. Sirve tanto para autoestudio como para evaluar alumnos en un aula.</p></details>
+    <details><summary>¿En qué formato vienen los podcasts?</summary>
+      <p>En <strong>M4A</strong>, el formato de audio estándar hoy: se reproduce sin instalar nada
+        en iPhone, Android, Windows, Mac y en cualquier reproductor con Bluetooth o CarPlay.
+        Si tu radio del coche es de las que solo leen MP3 desde un USB, escríbeme y te envío
+        la misma serie convertida a MP3, sin costo.</p></details>
+    <details><summary>¿Los podcasts repiten el contenido de los módulos?</summary>
+      <p>No son los módulos leídos en voz alta. Cada episodio recorre el <em>razonamiento</em>
+        de un módulo —por qué una medición engaña, qué separa dos causas parecidas— y cierra
+        con un caso de taller narrado. Están pensados para escucharse en el coche o en el
+        taller, y funcionan como repaso, no como sustituto de la lectura.</p></details>
+    <details><summary>¿Qué nivel previo se requiere?</summary>
+      <p>El Módulo 0 construye la base eléctrica desde cero: Ley de Ohm, divisores de
+        tensión, caída de voltaje y uso del osciloscopio. Un técnico con experiencia
+        mecánica pero sin formación eléctrica formal puede seguir el curso completo.</p></details>
+  </div>
+</section>
+
+<section class="bank">
+  <div class="wrap">
+    <div class="eyebrow">Incluido · Aplicación web sin instalación</div>
+    <h2>1 196 preguntas que te obligan a calcular</h2>
+    <p class="lede">Un banco interactivo con las respuestas explicadas y la referencia al parágrafo
+      exacto del curso. No son preguntas de memoria: cada una exige un razonamiento o una operación,
+      como en el taller.</p>
+
+    <div class="bankgrid">
+      <div class="bankdemo">
+        <div class="bankbar">MÓD 08 &middot; PREGUNTA 12/98 &middot; <span>ACIERTOS</span> 11 &middot;
+          <span>RENDIMIENTO</span> 91.7 %</div>
+        <div class="bankq">
+          <span class="tag">Inyector saturado</span>
+          <h4>Un inyector de 13.2 &Omega; a 14.1 V, y la pinza mide 0.79 A.
+              &iquest;Cu&aacute;nta resistencia par&aacute;sita hay?</h4>
+          <div class="bankopt"><i>A</i><span>2.10 &Omega;</span></div>
+          <div class="bankopt ok"><i>B</i><span>4.65 &Omega;</span></div>
+          <div class="bankopt"><i>C</i><span>17.85 &Omega;</span></div>
+          <div class="bankopt"><i>D</i><span>0.79 &Omega;</span></div>
+          <div class="bankexp"><b>Correcto.</b>
+            R total = 14.1/0.79 = 17.85 &Omega; &rarr; R par&aacute;sita = 17.85 &minus; 13.2 = 4.65 &Omega;.
+            El &oacute;hmetro sobre el inyector seguir&aacute; midiendo 13.2 &Omega; y lo
+            &laquo;aprobar&aacute;&raquo;.
+            <span style="display:block;margin-top:8px;font-family:'SF Mono',Consolas,monospace;
+            font-size:.78rem;color:#5c6470">M&oacute;dulo 8 &middot; &sect;8.1, punto 9</span></div>
+        </div>
+      </div>
+
+      <ul class="bankfeat">
+        <li><b>Cada respuesta viene explicada</b>
+          <span>Con el c&aacute;lculo desarrollado y el porqu&eacute;, no solo la letra correcta.</span></li>
+        <li><b>Referencia al par&aacute;grafo exacto</b>
+          <span>Si fallas, sabes qu&eacute; p&aacute;gina del curso repasar.</span></li>
+        <li><b>Filtro por tema</b>
+          <span>112 temas: practica solo caída de voltaje, o solo rampa de corriente.</span></li>
+        <li><b>Resumen con veredicto</b>
+          <span>Al terminar, la lista de temas a repasar ordenada por prioridad.</span></li>
+        <li><b>Funciona sin conexión</b>
+          <span>Un solo archivo. Ábrelo en el móvil, en la tablet o en el ordenador del taller.</span></li>
+      </ul>
+    </div>
+
+    <div class="banknum">
+      <div><b>1196</b><span>PREGUNTAS</span></div>
+      <div><b>112</b><span>TEMAS</span></div>
+      <div><b>16</b><span>MÓDULOS</span></div>
+      <div><b>100 %</b><span>CON EXPLICACIÓN</span></div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Bonos incluidos · Sin costo adicional</div>
+    <h2>Cinco herramientas que acompañan al curso</h2>
+    <p class="lede">El curso enseña el método. Estos cinco bonos existen para que el método
+      sobreviva al cierre del PDF: para repasarlo, practicarlo, enseñarlo y aplicarlo con las
+      manos sucias.</p>
+    <div class="kit">
+      <article>
+        <span class="tagbono">BONO 1</span>
+        <div class="num">Audio · M4A</div>
+        <h3>16 podcasts</h3>
+        <p>Uno por módulo, más de 15 minutos cada uno. El repaso que sí se hace: en el coche,
+          en el almuerzo, camino al taller.</p>
+      </article>
+      <article>
+        <span class="tagbono">BONO 2</span>
+        <div class="num">Aplicación HTML</div>
+        <h3>Banco interactivo de 1 196 preguntas</h3>
+        <p>112 temas, cada respuesta con el cálculo explicado y la referencia al parágrafo
+          exacto del curso.</p>
+      </article>
+      <article>
+        <span class="tagbono">BONO 3</span>
+        <div class="num">PDF + Markdown</div>
+        <h3>Manual del Instructor</h3>
+        <p>Respuestas razonadas, criterios de calificación, equipamiento mínimo y ocho
+          prácticas de aula listas para dictar.</p>
+      </article>
+      <article>
+        <span class="tagbono">BONO 4</span>
+        <div class="num">PDF para imprimir</div>
+        <h3>Manual Rápido de Bolsillo</h3>
+        <p>Todos los valores del curso en un solo documento: fórmulas, límites de caída,
+          valores en ralentí, pruebas maestras y códigos por sistema.</p>
+      </article>
+      <article>
+        <span class="tagbono">BONO 5</span>
+        <div class="num">Aplicación HTML + manual PDF</div>
+        <h3>Calculadora de Taller + manual de uso</h3>
+        <p>Los 51 cálculos del curso ya programados: escribe lo que mediste y lee el
+          resultado, con el rango del curso al lado. Funciona sin conexión.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="bonus">
+  <div class="wrap">
+    <div class="bonustag">BONO INCLUIDO · SIN COSTO ADICIONAL</div>
+    <h2>16 podcasts. Uno por cada módulo.</h2>
+    <p class="lede">Más de 15 minutos por episodio. Porque el diagnóstico no se aprende
+      leyendo una vez: se aprende repitiendo hasta que el razonamiento se vuelve automático.
+      Y las horas muertas del técnico —el trayecto al taller, el almuerzo, la fila del
+      supermercado— son las mejores horas de estudio que existen.</p>
+
+    <div class="podgrid">
+      <article>
+        <h3>El repaso que sí se hace</h3>
+        <p>Nadie relee un manual de 679 páginas. Pero un episodio de 15 minutos en el
+          coche, camino al trabajo, se escucha entero. <strong>El bono existe para que el
+          contenido se fije, no para engordar la oferta.</strong></p>
+      </article>
+      <article>
+        <h3>Razonamiento, no lectura</h3>
+        <p>No son los módulos leídos en voz alta. Cada episodio recorre el
+          <em>razonamiento diagnóstico</em>: por qué el óhmetro miente, por qué la joroba
+          importa, por qué ese código no acusa a esa pieza.</p>
+      </article>
+      <article>
+        <h3>Casos narrados</h3>
+        <p>Cada episodio cierra con un caso de taller contado como una historia: el
+          síntoma, los datos, la hipótesis equivocada, el hallazgo y el número que lo
+          confirmó.</p>
+      </article>
+    </div>
+
+    <div class="podlist">
+      <ul>
+        <li><b>EP 00</b> Por qué el óhmetro miente</li>
+        <li><b>EP 01</b> Los dos huecos del ciclo de 720°</li>
+        <li><b>EP 02</b> Fuga de vacío o MAF sucio: la firma del LTFT</li>
+        <li><b>EP 03</b> El sensor que miente sin dar código</li>
+        <li><b>EP 04</b> La sonda que solo sabe decir rica o pobre</li>
+        <li><b>EP 05</b> Detonación real contra golpeteo mecánico</li>
+        <li><b>EP 06</b> Cuando 50 milivoltios valen 31 bar</li>
+        <li><b>EP 07</b> El sensor que modula corriente, no voltaje</li>
+        <li><b>EP 08</b> La joroba: la firma de que el inyector abrió</li>
+        <li><b>EP 09</b> Leer una chispa en cuatro trazos</li>
+        <li><b>EP 10</b> El actuador que mide el resto del motor</li>
+        <li><b>EP 11</b> El filtro que nadie revisa</li>
+        <li><b>EP 12</b> Seis caídas aceptables que cuestan el 29 %</li>
+        <li><b>EP 13</b> Un valle cada seis pulsos</li>
+        <li><b>EP 14</b> Cuando el sensor ya no habla en voltios</li>
+        <li><b>EP 15</b> Las cuatro preguntas, en orden</li>
+      </ul>
+    </div>
+
+    <div class="podnum">
+      <div><b>16</b><span>EPISODIOS</span></div>
+      <div><b>+15 min</b><span>CADA UNO</span></div>
+      <div><b>+4 h</b><span>DE AUDIO</span></div>
+      <div><b>M4A</b><span>DESCARGA SIN CONEXIÓN</span></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="price">
+  <div class="wrap">
+    <div class="eyebrow">Inversión</div>
+    <h2>El curso cuesta menos que la pieza que no hacía falta cambiar</h2>
+    <p class="lede">Un pago único. Sin suscripción, sin renovación y sin módulos que se cobran aparte.</p>
+
+    <div class="pricegrid">
+
+      <div class="pricecard">
+        <div class="pricetag"><sup>$</sup>49<span style="font-size:1.6rem">,99</span></div>
+        <div class="priceonce">Pago único · Acceso permanente</div>
+        <ul class="priceinc">
+          <li>16 módulos · 679 páginas · +70 horas</li>
+          <li>148 oscilogramas y diagramas</li>
+          <li>Los cinco bonos, sin costo adicional</li>
+          <li>Archivos fuente editables</li>
+          <li>Actualizaciones futuras incluidas</li>
+          <li>Entrega inmediata por WhatsApp</li>
+        </ul>
+        <a class="btn" href="https://wa.me/584243029659?text=Hola%2C%20quiero%20comprar%20el%20Curso%20Master%20completo.%20%C2%BFMe%20indicas%20los%20m%C3%A9todos%20de%20pago%3F" target="_blank">QUIERO EL CURSO COMPLETO</a>
+      </div>
+
+      <div class="roi">
+        <h3>Haz la cuenta con la misma honestidad con la que se mide un circuito.</h3>
+
+        <p>Llega un vehículo con un <strong>P0016</strong>. Se cambia el sensor de árbol de levas, que es lo primero que hace medio taller. La pieza se paga, el trabajo se hace, el cliente se va — y el código vuelve a los tres días, porque la causa estaba en la cadena, en el solenoide del VVT o en la presión de aceite.</p>
+
+        <p>Ese error no cuesta una vez. Cuesta tres:</p>
+
+        <div class="roilist">
+          <div><b>La pieza</b><span>Un sensor CMP, una bobina, un MAF o un catalizador: cualquiera de ellos supera por sí solo el precio de este curso.</span></div>
+          <div><b>El trabajo</b><span>Las horas de desmontaje y montaje que hay que repetir, esta vez sin cobrarlas.</span></div>
+          <div><b>El cliente</b><span>El que se va convencido de que le cobraron por adivinar. Ese no vuelve, y lo cuenta.</span></div>
+        </div>
+
+        <div class="roikicker">
+          <strong>Con un solo diagnóstico que no falle, el curso ya está pagado.</strong> Todo lo que venga después —cada código leído correctamente, cada pieza buena que no se reemplazó, cada garantía que no hubo que asumir— es ganancia.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Formas de pago</div>
+    <h2>Paga como te resulte más cómodo</h2>
+    <p class="lede">Cuatro métodos disponibles, dentro y fuera de Venezuela. Escribe por WhatsApp,
+      elige el que prefieras y recibes los datos y el material el mismo día.</p>
+    <div class="pay">
+      <article>
+        <h3>Pago móvil a tasa Binance</h3>
+        <p>En bolívares, con la tasa Binance del día. El método más rápido si estás en Venezuela.</p>
+      </article>
+      <article>
+        <h3>Zinli</h3>
+        <p>Transferencia en dólares desde la app, sin comisiones para ti.</p>
+      </article>
+      <article>
+        <h3>Binance</h3>
+        <p>USDT u otra cripto directamente a la billetera. Confirmación en minutos.</p>
+      </article>
+      <article>
+        <h3>PayPal</h3>
+        <p>Para pagos internacionales desde cualquier país.</p>
+      </article>
+    </div>
+    <div class="paynote">
+      <strong>$49,99, pago único.</strong> Confirmado el pago, recibes de inmediato el enlace de descarga con
+      los 16 módulos y los cinco bonos. Actualizaciones futuras incluidas, sin pago adicional.
+      <br><a href="https://wa.me/584243029659?text=Hola%2C%20quiero%20comprar%20el%20curso.%20%C2%BFMe%20indicas%20los%20m%C3%A9todos%20de%20pago%20disponibles%3F" target="_blank" style="color:#c1272d;font-weight:700">Consultar datos de pago por WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>El método, en una línea</h2>
+    <p>Verifique la energía. Capture la señal. Mida la corriente. Confirme la respuesta
+      física. Y solo entonces, decida.</p>
+    <div class="btnrow" style="justify-content:center">
+      <a class="btn" href="https://wa.me/584243029659?text=Hola%2C%20estoy%20interesad%40%20en%20el%20Curso%20Master%20completo%20%2816%20m%C3%B3dulos%20%2B%20bonos%29." target="_blank">SOLICITAR EL CURSO COMPLETO</a>
+      <a class="btn ghost" href="https://wa.me/584243029659?text=Hola%2C%20quiero%20el%20M%C3%B3dulo%200%20GRATIS%20de%20muestra%20del%20Curso%20Master%20de%20Sensores%20y%20Actuadores%20Automotrices." target="_blank">PROBAR EL MÓDULO 0 GRATIS</a>
+    </div>
+    <p class="note">16 módulos · 679 páginas · +70 horas · <strong>Manual del Instructor</strong> ·
+      <strong>1 196 preguntas interactivas</strong> · <strong>16 podcasts</strong> ·
+      <strong>Manual Rápido de Bolsillo</strong> · <strong>Calculadora + manual</strong> ·
+      Archivos editables · Actualizaciones incluidas</p>
+    <p class="note"><strong style="color:#fff;font-size:1rem">Pago único de $49,99</strong> · Pago móvil a tasa Binance · Zinli · Binance · PayPal</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Curso Master de Sensores y Actuadores Automotrices · Diagnóstico Electrónico Avanzado<br>
+    Módulos 0 a 15 · Manual del Instructor · Manual Rápido de Bolsillo · Calculadora de Taller<br>Pago móvil a tasa Binance · Zinli · Binance · PayPal
+  </div>
+</footer>
+
+</body>
+</html>
