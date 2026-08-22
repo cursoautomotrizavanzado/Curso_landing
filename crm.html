@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Master Course CRM V1.1</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f1f5f9;color:#0f172a}
+button,input{font:inherit}button{cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh;background:#f8fafc;padding-bottom:82px}
+.top{background:#0f172a;color:#fff;padding:18px 18px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}.brand{font-weight:800;letter-spacing:.6px}.brand span{color:#38bdf8}.date{font-size:12px;opacity:.7;margin-top:3px}
+.icon{border:0;background:#1e293b;color:#fff;border-radius:12px;width:42px;height:42px;font-size:22px}
+main{padding:16px}.hero{background:#0f172a;color:#fff;border-radius:18px;padding:20px;margin-bottom:14px}.eyebrow{font-size:11px;letter-spacing:1.4px;color:#38bdf8;font-weight:800}.hero h1{font-size:25px;margin:5px 0 8px}.muted{color:#64748b;line-height:1.45}.hero .muted{color:#cbd5e1}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{border:0;background:#fff;border-radius:16px;padding:15px;text-align:left;box-shadow:0 1px 5px #0000000d}.metric strong{display:block;font-size:28px}.metric span{font-size:13px;color:#64748b}.urgent{border-left:4px solid #ef4444}
+.head{display:flex;justify-content:space-between;align-items:center;margin:20px 0 10px}.head h2,.head h1{margin:0}.head h1{font-size:25px}.link{border:0;background:none;color:#0284c7;font-weight:700}.primary{border:0;background:#0f172a;color:#fff;border-radius:12px;padding:11px 15px;font-weight:800}.small{padding:9px 12px}
+.search{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e2e8f0;border-radius:13px;padding:10px 12px}.search input{border:0;outline:0;width:100%;background:transparent}
+.card,.action,.lead{background:#fff;border-radius:15px;padding:15px;margin:9px 0;box-shadow:0 1px 5px #0000000d}.action{border-left:4px solid #0284c7}.action.overdue{border-left-color:#ef4444}.row{display:flex;justify-content:space-between;gap:12px;align-items:center}.title{font-weight:800}.smalltxt{font-size:12px;color:#64748b}.badge{display:inline-block;padding:5px 8px;border-radius:999px;background:#e0f2fe;color:#0369a1;font-size:11px;font-weight:800;margin-top:6px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{border:0;border-radius:10px;padding:9px 11px;font-size:13px;font-weight:700}.done{background:#dcfce7;color:#166534}.wa{background:#dcfce7;color:#166534}.secondary{background:#e2e8f0;color:#334155}.danger{background:#fee2e2;color:#991b1b;border:0;border-radius:10px;padding:10px 12px;font-weight:700}.full{width:100%}
+.chips{display:flex;gap:7px;overflow:auto;padding-bottom:5px}.chip{border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:8px 13px;white-space:nowrap}.chip.active{background:#0f172a;color:#fff;border-color:#0f172a}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e2e8f0;display:flex;justify-content:center;z-index:10}.bottom button{max-width:190px;flex:1;border:0;background:#fff;padding:10px 5px 12px;color:#64748b;font-size:11px}.bottom button b{display:block;font-size:20px;margin-bottom:2px}.bottom button.active{color:#0284c7;font-weight:800}
+.screen{display:none}.screen.active{display:block}
+.modal{position:fixed;inset:0;background:#0008;z-index:20;display:flex;align-items:flex-end}.modal.hidden{display:none}.sheet{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:760px;margin:auto;padding:18px;max-height:90vh;overflow:auto}.sheethead{display:flex;justify-content:space-between;align-items:center;font-size:18px}.field{margin:12px 0}.field label{display:block;font-size:12px;font-weight:800;color:#475569;margin-bottom:5px}.field input,.field select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px}.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#0f172a;color:#fff;padding:11px 15px;border-radius:12px;display:none;z-index:30;font-size:13px}
+.empty{text-align:center;padding:28px;color:#64748b}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div><div class="brand">MASTER COURSE <span>CRM</span></div><div class="date" id="date"></div></div><button class="icon" onclick="render()">↻</button></header>
+<main>
+<section id="dashboard" class="screen active">
+<div class="hero"><div class="eyebrow">CONTROL DIARIO</div><h1>¿Qué toca hacer hoy?</h1><div class="muted">El CRM organiza tus seguimientos para que no confundas el día ni el mensaje.</div></div>
+<div class="metrics"><button class="metric urgent" onclick="go('actions')"><strong id="mtoday">0</strong><span>Acciones hoy</span></button><button class="metric" onclick="go('leads')"><strong id="mnew">0</strong><span>Leads</span></button><button class="metric" onclick="go('actions')"><strong id="mchat">0</strong><span>Conversaciones</span></button><button class="metric" onclick="go('actions')"><strong id="moffer">0</strong><span>Ofertas</span></button></div>
+<div class="head"><h2>Próximas acciones</h2><button class="link" onclick="go('actions')">Ver todas</button></div><div id="dash"></div>
+</section>
+<section id="leads" class="screen"><div class="head"><h1>Leads</h1><button class="primary small" onclick="newLead()">+ Nuevo</button></div><label class="search">⌕<input id="search" placeholder="Buscar nombre o WhatsApp" oninput="renderLeads()"></label><div id="leadList"></div></section>
+<section id="actions" class="screen"><div class="head"><h1>Acciones</h1></div><div class="chips"><button class="chip active" onclick="filterActions('all',this)">Todas</button><button class="chip" onclick="filterActions('today',this)">Hoy</button><button class="chip" onclick="filterActions('overdue',this)">Vencidas</button><button class="chip" onclick="filterActions('pending',this)">Pendientes</button></div><div id="actionList"></div></section>
+<section id="more" class="screen"><div class="head"><h1>Más</h1></div><div class="card"><h3>V1.1 móvil</h3><p class="muted">Datos guardados localmente en este navegador. La versión V1.2 incorporará un Centro de Acciones más estricto y sincronización.</p></div><div class="card"><h3>Datos</h3><button class="danger full" onclick="resetData()">Borrar todos los leads</button></div></section>
+</main>
+<nav class="bottom"><button class="active" onclick="go('dashboard',this)"><b>⌂</b>Inicio</button><button onclick="go('leads',this)"><b>♙</b>Leads</button><button onclick="go('actions',this)"><b>✓</b>Acciones</button><button onclick="go('more',this)"><b>⚙</b>Más</button></nav>
+<div id="modal" class="modal hidden"><div class="sheet"><div class="sheethead"><strong id="modalTitle">Nuevo lead</strong><button class="icon" onclick="closeModal()">×</button></div><div id="modalBody"></div></div></div>
+<div id="toast" class="toast"></div>
+</div>
+<script>
+const KEY='mc_crm_v11';
+let leads=JSON.parse(localStorage.getItem(KEY)||'[]');
+const today=()=>new Date().toISOString().slice(0,10);
+function save(){localStorage.setItem(KEY,JSON.stringify(leads))}
+function fmt(d){return new Date(d+'T12:00:00').toLocaleDateString('es-VE',{day:'2-digit',month:'2-digit',year:'numeric'})}
+function addDays(date,n){let d=new Date(date+'T12:00:00');d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)}
+function seed(){if(leads.length)return;let t=today();leads=[{id:crypto.randomUUID(),name:'Ejemplo — elimina este lead',phone:'584000000000',created:t,status:'MODULO_0',lastAction:'Módulo 0 enviado',next:addDays(t,2),nextType:'SEGUIMIENTO_2',active:true}];save()}
+function actions(l){if(!l.active||!l.next)return [];return [{id:l.id+'-'+l.next,type:l.nextType,date:l.next,label:l.nextType==='SEGUIMIENTO_2'?'Seguimiento Día 2':l.nextType==='SEGUIMIENTO_5'?'Seguimiento Día 5':'Seguimiento',lead:l}]}
+function allActions(){return leads.flatMap(actions)}
+function render(){seed();document.getElementById('date').textContent=new Date().toLocaleDateString('es-VE',{weekday:'long',day:'numeric',month:'long'});let a=allActions(),t=today();document.getElementById('mtoday').textContent=a.filter(x=>x.date<=t).length;document.getElementById('mnew').textContent=leads.length;document.getElementById('mchat').textContent=leads.filter(x=>x.status==='CONVERSACION').length;document.getElementById('moffer').textContent=leads.filter(x=>x.status==='OFERTA').length;document.getElementById('dash').innerHTML=a.slice().sort((x,y)=>x.date.localeCompare(y.date)).slice(0,5).map(actionHTML).join('')||'<div class="empty">No hay acciones pendientes.</div>';renderLeads();renderActions('all')}
+function actionHTML(x){let overdue=x.date<today();return `<div class="action ${overdue?'overdue':''}"><div class="row"><div><div class="title">${esc(x.lead.name)}</div><div class="smalltxt">${x.label} · ${fmt(x.date)}</div><span class="badge">${x.lead.status}</span></div><div class="smalltxt">${overdue?'VENCIDA':'PROGRAMADA'}</div></div><div class="actions"><button class="wa" onclick="openWA('${x.lead.id}')">WhatsApp</button><button class="done" onclick="completeAction('${x.lead.id}')">Marcar enviado</button><button class="secondary" onclick="openLead('${x.lead.id}')">Ficha</button></div></div>`}
+function renderLeads(){let q=(document.getElementById('search')?.value||'').toLowerCase();let arr=leads.filter(l=>(l.name+l.phone).toLowerCase().includes(q));document.getElementById('leadList').innerHTML=arr.map(l=>`<div class="lead"><div class="row"><div><div class="title">${esc(l.name)}</div><div class="smalltxt">📱 ${esc(l.phone)}</div><span class="badge">${l.status}</span></div><button class="secondary" onclick="openLead('${l.id}')">Abrir</button></div><div class="smalltxt" style="margin-top:9px">Siguiente: ${l.next?fmt(l.next):'—'}</div></div>`).join('')||'<div class="empty">No hay leads.</div>'}
+function renderActions(filter){let a=allActions(),t=today();if(filter==='today')a=a.filter(x=>x.date===t);if(filter==='overdue')a=a.filter(x=>x.date<t);if(filter==='pending')a=a.filter(x=>x.date>=t);a.sort((x,y)=>x.date.localeCompare(y.date));document.getElementById('actionList').innerHTML=a.map(actionHTML).join('')||'<div class="empty">No hay acciones en este filtro.</div>'}
+function filterActions(f,b){document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderActions(f)}
+function go(id,b){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');else{let i={dashboard:0,leads:1,actions:2,more:3}[id];document.querySelectorAll('.bottom button')[i]?.classList.add('active')}}
+function newLead(){document.getElementById('modalTitle').textContent='Nuevo lead';document.getElementById('modalBody').innerHTML=`<div class="field"><label>Nombre</label><input id="fName"></div><div class="field"><label>WhatsApp (con código país)</label><input id="fPhone" inputmode="tel"></div><button class="primary full" onclick="createLead()">Guardar lead</button>`;document.getElementById('modal').classList.remove('hidden')}
+function createLead(){let name=document.getElementById('fName').value.trim(),phone=document.getElementById('fPhone').value.trim();if(!name||!phone)return toast('Completa nombre y WhatsApp');let t=today();leads.push({id:crypto.randomUUID(),name,phone,created:t,status:'MODULO_0',lastAction:'Pendiente de entrega',next:t,nextType:'MODULO_0',active:true});save();closeModal();render();toast('Lead creado: acción de hoy programada')}
+function openLead(id){let l=leads.find(x=>x.id===id);document.getElementById('modalTitle').textContent=l.name;document.getElementById('modalBody').innerHTML=`<p class="muted">WhatsApp: ${esc(l.phone)}</p><p><b>Estado:</b> ${l.status}</p><p><b>Última acción:</b> ${esc(l.lastAction||'—')}</p><p><b>Próxima acción:</b> ${l.next?fmt(l.next):'—'}</p><div class="actions"><button class="wa" onclick="openWA('${id}')">WhatsApp</button>${l.next?`<button class="done" onclick="completeAction('${id}');closeModal()">Marcar enviado</button>`:''}</div>`;document.getElementById('modal').classList.remove('hidden')}
+function completeAction(id){let l=leads.find(x=>x.id===id);if(!l)return;let t=today();if(l.nextType==='MODULO_0'){l.status='MODULO_0_ENVIADO';l.lastAction='Módulo 0 enviado';l.next=addDays(t,2);l.nextType='SEGUIMIENTO_2'}else if(l.nextType==='SEGUIMIENTO_2'){l.status='SEGUIMIENTO_2_ENVIADO';l.lastAction='Seguimiento Día 2 enviado';l.next=addDays(t,3);l.nextType='SEGUIMIENTO_5'}else if(l.nextType==='SEGUIMIENTO_5'){l.status='CONVERSACION';l.lastAction='Seguimiento Día 5 enviado';l.next=null;l.nextType=null}save();render();toast('Acción registrada. Próxima etapa programada.')}
+function openWA(id){let l=leads.find(x=>x.id===id);let msg=l.nextType==='MODULO_0'?'Hola '+l.name+', aquí tienes el Módulo 0 gratuito que te comenté. Revísalo con calma y luego me cuentas qué te pareció.':l.nextType==='SEGUIMIENTO_2'?'Hola '+l.name+', ¿pudiste revisar el Módulo 0 que te envié? Si tienes alguna duda, dime y te ayudo.':l.nextType==='SEGUIMIENTO_5'?'Hola '+l.name+', quería saber qué te pareció el material. Si quieres, puedo explicarte cómo continuar con el curso.':'Hola '+l.name;window.open('https://wa.me/'+l.phone.replace(/\D/g,'')+'?text='+encodeURIComponent(msg),'_blank')}
+function resetData(){if(confirm('¿Borrar todos los leads?')){localStorage.removeItem(KEY);leads=[];render();toast('Datos borrados')}}
+function closeModal(){document.getElementById('modal').classList.add('hidden')}
+function toast(s){let t=document.getElementById('toast');t.textContent=s;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+render();
+</script>
+</body>
+</html>
