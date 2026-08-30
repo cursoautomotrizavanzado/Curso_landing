@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de códigos · Panel privado</title>
+<style>
+  body{font-family:Arial,sans-serif;background:#12171f;color:#e8eaed;margin:0;padding:24px}
+  .caja{max-width:600px;margin:0 auto;background:#1b222d;border:1px solid #2a323d;
+        border-top:5px solid #f0b429;padding:28px;border-radius:8px}
+  h1{font-size:1.3rem;margin:0 0 6px}
+  p{color:#9aa4b2;font-size:.9rem;margin:0 0 20px}
+  label{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+        color:#9aa4b2;margin:14px 0 6px;font-weight:bold}
+  input{width:100%;padding:12px;font-size:1rem;background:#12171f;color:#fff;
+        border:1px solid #2a323d;border-radius:6px;box-sizing:border-box}
+  button{width:100%;margin-top:20px;padding:15px;background:#f0b429;color:#12171f;
+         border:none;border-radius:6px;font-size:.95rem;font-weight:bold;cursor:pointer}
+  button:disabled{opacity:.5}
+  #log{margin-top:18px;font-size:.85rem;color:#8fe0a8;white-space:pre-wrap}
+  .err{color:#f08a86}
+  textarea{width:100%;min-height:220px;margin-top:10px;background:#12171f;color:#9fd6c4;
+           border:1px solid #2a323d;border-radius:6px;padding:12px;font-size:.85rem;
+           font-family:monospace;box-sizing:border-box}
+  .copiar{margin-top:10px;background:#12703a;color:#fff}
+</style>
+</head>
+<body>
+<div class="caja">
+  <h1>🔑 Generador de códigos de reseña</h1>
+  <p>Panel privado. Crea códigos en lote y los registra en Firestore como no usados.</p>
+
+  <label>Prefijo (opcional)</label>
+  <input id="prefijo" placeholder="Ej.: CURSO">
+
+  <label>Cantidad de códigos</label>
+  <input id="cantidad" type="number" value="5" min="1" max="100">
+
+  <button id="generar">GENERAR Y REGISTRAR CÓDIGOS</button>
+  <div id="log"></div>
+  <textarea id="salida" style="display:none"></textarea>
+  <button id="copiar" class="copiar" style="display:none">📋 COPIAR TODOS LOS CÓDIGOS</button>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBG6kP02Ak5yaadVZG_5HpUpgVIuoPoR-CY",
+  authDomain: "resenas-curso-automotriz.firebaseapp.com",
+  projectId: "resenas-curso-automotriz",
+  storageBucket: "resenas-curso-automotriz.firebasestorage.app",
+  messagingSenderId: "549611843393",
+  appId: "1:549611843393:web:2a46e4df9091dd8c4424c9"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+/* Genera algo como: 7K2M9X4Q (letras y números sin ambigüedades) */
+function pieza(){
+  const CH = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // sin I,O,0,1 para evitar confusiones
+  let s = "";
+  for(let i=0;i<8;i++) s += CH[Math.floor(Math.random()*CH.length)];
+  return s;
+}
+
+document.getElementById("generar").addEventListener("click", async () => {
+  const log      = document.getElementById("log");
+  const salida   = document.getElementById("salida");
+  const btn      = document.getElementById("generar");
+  const prefijo  = document.getElementById("prefijo").value.trim().toUpperCase();
+  const n        = Math.min(100, Math.max(1, Number(document.getElementById("cantidad").value) || 1));
+
+  btn.disabled = true;
+  log.className = "";
+  log.textContent = "Generando " + n + " código(s)...\n";
+  const creados = [];
+
+  try{
+    for(let i=0;i<n;i++){
+      let codigo, intentos = 0;
+      // intenta hasta encontrar un código que no exista ya
+      do{
+        codigo = (prefijo ? prefijo + "-" : "") + pieza();
+        intentos++;
+        var ref = doc(db, "codigos", codigo);
+        const { getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+        var yaExiste = (await getDoc(ref)).exists();
+      }while(yaExiste && intentos < 5);
+
+      await setDoc(ref, { usado:false, creado:new Date().toISOString().slice(0,10) });
+      creados.push(codigo);
+      log.textContent += "✅ " + codigo + "\n";
+    }
+    log.textContent += "\n🎉 " + n + " código(s) registrados en Firestore.";
+    salida.value = creados.join("\n");
+    salida.style.display = "block";
+    document.getElementById("copiar").style.display = "block";
+  }catch(e){
+    console.error(e);
+    log.className = "err";
+    log.textContent += "\n❌ Error: " + e.message;
+  }
+  btn.disabled = false;
+});
+
+document.getElementById("copiar").addEventListener("click", () => {
+  const salida = document.getElementById("salida");
+  salida.select();
+  navigator.clipboard.writeText(salida.value)
+    .then(() => alert("Códigos copiados. Péguelos donde guarde su lista."))
+    .catch(() => document.execCommand("copy"));
+});
+</script>
+</body>
+</html>
