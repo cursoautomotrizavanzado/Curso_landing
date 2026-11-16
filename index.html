@@ -206,6 +206,11 @@ details p{padding:0 22px 20px;color:var(--mut);font-size:.94rem}
 .priceinc li::before{content:"—";position:absolute;left:0;color:#f0b429}
 .pricecard .btn{background:#f0b429;color:#12171f;display:block;text-align:center;margin-top:24px;
   padding:15px 20px;font-size:.84rem}
+.paypalbox{margin-top:18px;padding-top:18px;border-top:1px solid #2a323d}
+.paypalbox .pplabel{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.72rem;letter-spacing:.08em;
+  text-transform:uppercase;color:#9aa4b2;text-align:center;margin-bottom:12px}
+.paypalbox .ppnote{font-size:.78rem;color:#9aa4b2;text-align:center;margin-top:10px;line-height:1.45}
+.paypalbox .ppnote a{color:#f0b429;font-weight:700}
 .roi h3{font-family:"Helvetica Neue",Arial,sans-serif;font-size:1.3rem;color:#fff;
   line-height:1.3;margin-bottom:18px}
 .roi > p{font-size:.98rem;color:#b6bec9;line-height:1.65;margin-bottom:16px}
@@ -985,6 +990,11 @@ temperatura ambiente — <span class="r">el problema es el cableado, no el senso
           <li>Entrega inmediata por WhatsApp</li>
         </ul>
         <a class="btn" href="https://wa.me/584244611900?text=Hola%2C%20quiero%20comprar%20el%20Curso%20Master%20completo.%20%C2%BFMe%20indicas%20los%20m%C3%A9todos%20de%20pago%3F" target="_blank">QUIERO EL CURSO COMPLETO</a>
+        <div class="paypalbox" id="pagar-paypal">
+          <div class="pplabel">O paga ahora con PayPal o tarjeta</div>
+          <div id="paypal-container-3MSZH7XSVB9EJ"></div>
+          <p class="ppnote">Al completar el pago, <a href="https://wa.me/584244611900?text=Hola%2C%20ya%20pagu%C3%A9%20el%20Curso%20Master%20con%20PayPal.%20Env%C3%ADo%20mi%20comprobante." target="_blank" rel="noopener">envía tu comprobante por WhatsApp</a> y recibes el enlace de descarga.</p>
+        </div>
       </div>
 
       <div class="roi">
@@ -1039,7 +1049,7 @@ temperatura ambiente — <span class="r">el problema es el cableado, no el senso
       <article>
         <span class="zone">Internacional</span>
         <h3>PayPal</h3>
-        <p>Para pagos internacionales desde cualquier país.</p>
+        <p>Para pagos internacionales desde cualquier país. <a href="#pagar-paypal" style="color:var(--acc);font-weight:700">Pagar ahora →</a></p>
       </article>
       <article>
         <span class="zone">Estados Unidos</span>
@@ -1327,5 +1337,6 @@ cargarResenas();
   onScroll();
 }catch(e){console.warn('mejoras',e)}})();
 </script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAAr-gfiT8Sx7IdMxvYwA-2rsfeLAWz4xMJ079cDPBWYsxuPYI81VX_bpvLjneSvZ4dbTqAwfAnuaJSVVU&components=hosted-buttons&disable-funding=venmo&currency=USD" async onload="if(window.paypal&&paypal.HostedButtons){paypal.HostedButtons({hostedButtonId:'3MSZH7XSVB9EJ'}).render('#paypal-container-3MSZH7XSVB9EJ')}"></script>
 </body>
 </html>
